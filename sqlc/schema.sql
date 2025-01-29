@@ -1,0 +1,8 @@
+-- Active: 1738075845386@@127.0.0.1@5432@root
+CREATE TABLE IF NOT EXISTS product (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  price NUMERIC(6, 2) NOT NULL,
+  available BOOLEAN ,
+  created TIMESTAMP DEFAULT NOW()
+);
