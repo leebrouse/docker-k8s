@@ -12,8 +12,17 @@ type todo struct {
 	Completed bool   `json:"completed"`
 }
 
+type todoHandlerInterface interface {
+	getTodos(c *gin.Context)
+	getTodoByID(c *gin.Context)
+	createTodo(c *gin.Context)
+	changeTodo(c *gin.Context)
+	deleteTodo(c *gin.Context)
+}
+
 type todoHandler struct {
 	todos []todo
+	todoHandlerInterface
 }
 
 func newTodoHandler() *todoHandler {
