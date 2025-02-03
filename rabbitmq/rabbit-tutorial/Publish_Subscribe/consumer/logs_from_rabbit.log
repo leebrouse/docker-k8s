@@ -1,0 +1,3 @@
+# command-line-arguments
+./receive_logs.go:4:2: "bytes" imported and not used
+./receive_logs.go:6:2: "time" imported and not used
