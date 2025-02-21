@@ -1,0 +1,28 @@
+database:
+  driver: "postgres"
+  host: "localhost"
+  port: 5432
+  username: "admin"
+  password: "secret"
+  dbname: "mydb"
+  ssl_mode: "disable"
+  max_idle_conns: 10
+  max_open_conns: 100
+
+redis:
+  address: "localhost:6379"
+  password: "myredispassword"
+  db: 0
+
+server:
+  addr: ":8080"
+  write_timeout: 30s
+  read_timeout: 30s
+
+app:
+  base_url: "http://localhost:8080"
+  default_duration: 60s
+  cleanup_interval: 24h
+
+shortcode:
+  length: 8

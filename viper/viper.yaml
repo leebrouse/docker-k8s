@@ -1,0 +1,7 @@
+app_name: "MyApp"
+port: 8080
+database:
+  user: "admin"
+  password: "secret"
+  host: "localhost"
+  port: 5432
