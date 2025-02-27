@@ -10,56 +10,45 @@ import (
 type Articals struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
-	Name        string `json:"name"`
+	Content     string `json:"content"`
 }
 
 func main() {
 	r := gin.Default()
 
-	r.LoadHTMLGlob("./template/*")
+	r.LoadHTMLGlob("./template/**/*")
 
-	r.GET("/ping", func(c *gin.Context) {
-
-		a := &Articals{
-			Title:       "title",
-			Description: "description",
-			Name:        "name",
-		}
-
-		c.JSON(http.StatusOK, a)
-	})
-
-	// http://localhost:8080/ping2?callback=hello
-	// hello({"title":"title","description":"description","name":"name"});
-	r.GET("/ping2", func(c *gin.Context) {
-
-		a := &Articals{
-			Title:       "title",
-			Description: "description",
-			Name:        "name",
-		}
-
-		c.JSONP(http.StatusOK, a)
-	})
-
-	r.GET("/xml", func(c *gin.Context) {
-		c.XML(http.StatusOK, gin.H{
-			"success": true,
-			"message": "Hello, world!",
+	//front
+	r.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "default/index.html", gin.H{
+			"title": "首页",
 		})
 	})
 
-	r.GET("/html", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "new.html", gin.H{
-			"title": "Main website",
+	r.GET("/news", func(c *gin.Context) {
+		news := &Articals{
+			Title:   "title",
+			Content: "content",
+		}
+
+		c.HTML(http.StatusOK, "default/news.html", gin.H{
+			"title": "Newspaper Title",
+			"news":  news,
 		})
 	})
 
-	r.GET("/string", func(c *gin.Context) {
-		name := c.Query("name")
-
-		c.String(http.StatusOK, "Hello %s", name)
+	
+	//back
+	r.GET("/admin", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "admin/index.html", gin.H{
+			"title": "后台首页",
+		})
 	})
 
+	r.GET("/admin/news", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "admin/news.html", gin.H{
+			"message": "后台新闻",
+		})
+	})
 	r.Run()
 }
