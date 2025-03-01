@@ -35,5 +35,15 @@ func main() {
 		})
 	})
 
+	r.GET("/user/:user/pass/:pass", func(ctx *gin.Context) {
+		user := ctx.Param("user")
+		password := ctx.Param("pass")
+
+		ctx.JSON(http.StatusOK, gin.H{
+			"user":     user,
+			"password": password,
+		})
+	})
+
 	r.Run()
 }
