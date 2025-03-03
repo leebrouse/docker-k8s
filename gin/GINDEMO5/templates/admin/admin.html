@@ -1,0 +1,22 @@
+{{define "admin/admin.html"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>WELCOME TO YOUR BACKEND INTERFACE</h1>
+    <form action="/admin/doupload" method="post" enctype="multipart/form-data">
+        User: <input type="text" name="user">
+        <br>
+        Image: <input type="file" name="image">
+        <br>
+        <button type="submit">submit</button>
+</body>
+
+</html>
+{{end}}
