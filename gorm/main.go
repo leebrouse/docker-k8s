@@ -7,8 +7,12 @@ import (
 
 func NewRouter() *gin.Engine {
 	r := gin.Default()
-	//add routers
+	//add user routers
 	routers.UserRoutersInit(r)
+	//add nav routers
+	routers.NavRouterInit(r)
+	//bank routers
+	routers.BankRouterInit(r)
 
 	return r
 }

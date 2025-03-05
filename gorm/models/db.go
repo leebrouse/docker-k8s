@@ -2,6 +2,7 @@ package models
 
 import (
 	"fmt"
+	"log"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -21,4 +22,12 @@ func init() {
 		fmt.Println("Can`t connect with the mysql database,due to :" + err.Error())
 		return
 	}
+
+	// 自动迁移
+	err = DB.AutoMigrate(&Users{}, &Navs{}, &Bank{})
+	if err != nil {
+		log.Fatal("数据表迁移失败:", err)
+	}
+
+	fmt.Println("数据库连接成功，数据表已迁移")
 }
