@@ -13,6 +13,8 @@ func NewRouter() *gin.Engine {
 	routers.NavRouterInit(r)
 	//bank routers
 	routers.BankRouterInit(r)
+	//student routers
+	routers.StudentRouterInit(r)
 
 	return r
 }

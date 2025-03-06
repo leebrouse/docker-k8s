@@ -24,7 +24,7 @@ func init() {
 	}
 
 	// 自动迁移
-	err = DB.AutoMigrate(&Users{}, &Navs{}, &Bank{})
+	err = DB.AutoMigrate(&Users{}, &Navs{}, &Bank{}, &Student{}, &Lesson{}, &LessonStudent{})
 	if err != nil {
 		log.Fatal("数据表迁移失败:", err)
 	}
