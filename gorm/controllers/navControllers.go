@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"fmt"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/leebrouse/gorm/models"
@@ -40,30 +40,43 @@ func (nav *NavControllers) Index(c *gin.Context) {
 	// })
 
 	// 使用原生 sql 删除 user 表中的一条数据
-	query1 := `delete from users where id = ?`
-	models.DB.Exec(query1, 3)
+	// query1 := `delete from users where id = ?`
+	// models.DB.Exec(query1, 3)
 
 	// 使用原生 sql 修改 user 表中的一条数据
-	query2 := `update users set username='leebrouse' where id=?`
-	models.DB.Exec(query2, 7)
+	// query2 := `update users set username='leebrouse' where id=?`
+	// models.DB.Exec(query2, 7)
 
 	// 使用原生 sql 查询 uid=2 的数据
-	user := models.Users{}
-	query3 := `select * from users where id=?`
-	models.DB.Raw(query3, 7).Scan(&user)
-	fmt.Println(user)
+	// user := models.Users{}
+	// query3 := `select * from users where id=?`
+	// models.DB.Raw(query3, 7).Scan(&user)
+	// fmt.Println(user)
 
 	// 使用原生 查询 User 表中所有的数据
-	users := []models.Users{}
-	query4 := `select * from users`
-	models.DB.Raw(query4).Scan(&users)
-	fmt.Println(users)
+	// users := []models.Users{}
+	// query4 := `select * from users`
+	// models.DB.Raw(query4).Scan(&users)
+	// fmt.Println(users)
 
 	// 统计 user 表的数量
-	var number int
-	query5 := `select count(1) from users`
-	models.DB.Raw(query5).Scan(&number)
-	fmt.Println(number)
+	// var number int
+	// query5 := `select count(1) from users`
+	// models.DB.Raw(query5).Scan(&number)
+	// fmt.Println(number)
+
+	articleList := []models.Article{}
+	models.DB.Preload("ArticleCate").Find(&articleList)
+
+	articleCateList := []models.ArticleCate{}
+	models.DB.Preload("Article").Find(&articleCateList)
+
+	c.JSON(http.StatusOK, gin.H{
+		"Result":      articleList,
+		"Result_cate": articleCateList,
+		"success":     true,
+	})
+
 }
 
 func (nav *NavControllers) Add(c *gin.Context) {
