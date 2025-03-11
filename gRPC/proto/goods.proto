@@ -1,0 +1,30 @@
+syntax = "proto3";
+package goodsService;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "./proto";
+service goodsService{
+    rpc AddGoods(AddGoodsReq)returns(AddGoodsRes);
+    rpc GetGoods(GetGoodsReq)returns(GetGoodsReq);
+}
+message GoodsModel{
+    string title=1;
+    double price=2;
+    string content=3;
+}
+message AddGoodsReq{
+   GoodsModel result=1;
+}
+
+message AddGoodsRes{
+    string message=1;
+    bool success=2;
+}
+
+message GetGoodsReq{
+    int32 id=1;
+}
+
+message GetGoodsRes{
+    repeated GoodsModel goodsList=1;
+}

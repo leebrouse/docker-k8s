@@ -1,0 +1,18 @@
+syntax = "proto3";
+package userService;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "./proto";
+message User{
+  int64 id=1;
+  string name=2;
+  int64 age=3;
+  PhoneType type=4;
+  repeated string hobby=5;
+}
+
+enum PhoneType{
+    MOBILE =0;
+    HOME=1;
+    WORK=2;
+}
