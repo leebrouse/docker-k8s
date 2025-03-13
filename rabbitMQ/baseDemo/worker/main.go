@@ -26,7 +26,7 @@ func main() {
 	msg, err := ch.Consume(
 		"hello",
 		"",
-		false,
+		true,
 		false,
 		false,
 		false,
@@ -38,7 +38,7 @@ func main() {
 	go func() {
 		for v := range msg {
 			log.Println("Receive a message:", string(v.Body))
-			v.Ack(false)
+			// v.Ack(false)
 		}
 	}()
 	<-forever

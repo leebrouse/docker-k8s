@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package= "./microservice";
+
+service ShoppingService {
+    rpc AddToCart (AddToCartRequest) returns (AddToCartResponse);
+    rpc Checkout (CheckoutRequest) returns (CheckoutResponse);
+}
+
+message AddToCartRequest {
+    string user_id = 1;
+    string product_id = 2;
+    int32 quantity = 3;
+}
+
+message AddToCartResponse {
+    bool success = 1;
+}
+
+message CheckoutRequest {
+    string user_id = 1;
+}
+
+message CheckoutResponse {
+    bool success = 1;
+    string order_id = 2;
+}

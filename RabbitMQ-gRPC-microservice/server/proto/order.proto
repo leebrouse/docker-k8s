@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package= "./microservice";
+
+service OrderService {
+    rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse);
+}
+
+message CreateOrderRequest {
+    string user_id = 1;
+    repeated string product_ids = 2;
+}
+
+message CreateOrderResponse {
+    bool success = 1;
+    string order_id = 2;
+}

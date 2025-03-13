@@ -25,7 +25,7 @@ func main() {
 	//regist service
 	greeter.RegisterGreeterServer(grpcServer, &Hello{})
 	//set listener
-	listener, err := net.Listen("tcp", "127.0.0.1:8080")
+	listener, err := net.Listen("tcp", "127.0.0.1:8081")
 	if err != nil {
 		fmt.Println(err)
 	}
