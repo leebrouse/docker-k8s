@@ -1,9 +1,10 @@
-module gihub.com/leebrouse/RabbitMQ-gRPC-microservice/client
+module gihub.com/leebrouse/RabbitMQ-gRPC-microservice/client_rabbitMQ
 
 go 1.24.1
 
 require (
 	github.com/golang/protobuf v1.5.4
+	github.com/streadway/amqp v1.1.0
 	google.golang.org/grpc v1.71.0
 )
 

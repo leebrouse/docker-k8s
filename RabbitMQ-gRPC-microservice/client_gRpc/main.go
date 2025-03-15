@@ -12,7 +12,7 @@ import (
 
 // 连接到 gRPC 服务器
 func NewPaymentServiceClient() (*grpc.ClientConn, error) {
-	conn, err := grpc.Dial("localhost:50031", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.NewClient("localhost:50031", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("Failed to connect to PaymentService: %v", err)
 	}
@@ -20,7 +20,7 @@ func NewPaymentServiceClient() (*grpc.ClientConn, error) {
 }
 
 func NewShoppingServiceClient() (*grpc.ClientConn, error) {
-	conn, err := grpc.Dial("localhost:50032", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.NewClient("localhost:50032", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("Failed to connect to ShoppingService: %v", err)
 	}
@@ -28,7 +28,7 @@ func NewShoppingServiceClient() (*grpc.ClientConn, error) {
 }
 
 func NewOrderServiceClient() (*grpc.ClientConn, error) {
-	conn, err := grpc.Dial("localhost:50030", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.NewClient("localhost:50030", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("Failed to connect to OrderService: %v", err)
 	}
