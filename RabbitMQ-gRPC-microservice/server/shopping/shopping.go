@@ -21,6 +21,7 @@ type shoppingServer struct {
 
 func (s *shoppingServer) AddToCart(ctx context.Context, req *pb.AddToCartRequest) (*pb.AddToCartResponse, error) {
 	fmt.Println("Adding to cart:", req)
+	//TODO: function for adding to the shopping database
 	return &pb.AddToCartResponse{Success: true}, nil
 }
 
@@ -34,13 +35,25 @@ func (s *shoppingServer) Checkout(ctx context.Context, req *pb.CheckoutRequest) 
 	}
 	defer ch.Close()
 
-	q, err := ch.QueueDeclare("payment_queue", false, false, false, false, nil)
+	q, err := ch.QueueDeclare(
+		"payment_queue", 
+		false, 
+		false, 
+		false, 
+		false, 
+		nil,
+	)
 	if err != nil {
 		return nil, err
 	}
 
 	body, _ := json.Marshal(req)
-	err = ch.Publish("", q.Name, false, false, amqp.Publishing{
+	err = ch.Publish(
+		"",
+		q.Name, 
+		false, 
+		false, 
+		amqp.Publishing{
 		ContentType: "application/json",
 		Body:        body,
 	})

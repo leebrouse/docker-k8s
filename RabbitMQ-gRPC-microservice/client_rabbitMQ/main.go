@@ -83,25 +83,9 @@ func main() {
 	defer shoppingConn.Close()
 	shoppingClient := pb.NewShoppingServiceClient(shoppingConn)
 
-	// paymentConn, err := connectGRPC("localhost:50031")
-	// if err != nil {
-	// 	log.Fatalf("Failed to connect to payment service: %v", err)
-	// }
-	// defer paymentConn.Close()
-	// // paymentClient := pb.NewPaymentServiceClient(paymentConn)
-
-	// orderConn, err := connectGRPC("localhost:50032")
-	// if err != nil {
-	// 	log.Fatalf("Failed to connect to order service: %v", err)
-	// }
-	// defer orderConn.Close()
-	// orderClient := pb.NewOrderServiceClient(orderConn)
-
 	AddToCartTest(shoppingClient)
 	CheckoutTest(shoppingClient)
 	// ProcessPaymentTest(paymentClient)
 	// CreateOrderTest(orderClient)
-
-	// time.Sleep(2 * time.Second) // 确保 goroutine 运行完成
 	log.Println("All gRPC requests completed.")
 }
